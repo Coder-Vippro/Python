@@ -1,38 +1,51 @@
-d1=int(input("Nhap d1: "))
-d2=int(input("Nhap d2: "))
-d3=int(input("Nhap d3: "))
-d4=int(input("Nhap d4: "))
-d5=int(input("Nhap d5: "))
-d6=int(input("Nhap d6: "))
-x=int(input("Nhap so dien tieu thu (KWh): "))
-h=int(input("Nhap so phan tram tien dien tang trong nam nay (%): "))
-if h!=0:
-    d1=d1+d1*(h/100)
-    d2=d2+d2*(h/100)
-    d3=d3+d3*(h/100)
-    d4=d4+d4*(h/100)
-    d5=d5+d5*(h/100)
-    d6=d6+d6*(h/100)
-if x<=50:
-    print(f"So tien dien phai tra: {(x*d1)+(x*d1)*(8/100)} nghin dong")
-elif x>=51 and x<=100:
-    tiendien=0
-    tiendien=50*d1+(x-50)*d2
-    print(f"So tien dien phai tra: {tiendien+tiendien*(8/100)} nghin dong")
-elif x>=101 and x<=200:
-    tiendien=0
-    tiendien=50*d1+50*d2+(x-100)*d3
-    print(f"So tien dien phai tra: {tiendien+tiendien*(8/100)} nghin dong")
-elif x>=201 and x<=300:
-    tiendien=0
-    tiendien=50*d1+50*d2+100*d3+(x-200)*d4
-    print(f"So tien dien phai tra: {tiendien+tiendien*(8/100)} nghin dong")
-elif x>=301 and x<=400:
-    tiendien=0
-    tiendien=50*d1+50*d2+100*d3+100*d4+(x-300)*d5
-    print(f"So tien dien phai tra: {tiendien+tiendien*(8/100)} nghin dong")
-else:
-    tiendien=0
-    tiendien=50*d1+50*d2+100*d3+100*d4+100*d5+(x-400)*d6
-    print(f"So tien dien phai tra: {tiendien+tiendien*(8/100)} nghin dong")
-
+tiendien = int(input("Nhập số tiền điện phải trả (nghin đồng): "))
+d1 = int(input("Nhập d1: "))
+d2 = int(input("Nhập d2: "))
+d3 = int(input("Nhập d3: "))
+d4 = int(input("Nhập d4: "))
+d5 = int(input("Nhập d5: "))
+d6 = int(input("Nhập d6: "))
+h = int(input("Nhập số phần trăm tiền điện tăng trong năm nay (%): "))
+tiendien_no_tax = tiendien / (1 + 8/100)
+KWh = 0
+while 1>0:
+    if tiendien_no_tax <= 50 * d1:
+        tiendien_1 = tiendien_no_tax
+        KWh = tiendien_no_tax / d1
+        break
+    elif tiendien_no_tax <= 50 * d1 + 50 * d2:
+        tiendien_1 = 50 * d1
+        tiendien_2 = tiendien_no_tax - tiendien_1
+        KWh = tiendien_2 / d2
+        break
+    elif tiendien_no_tax <= 50 * d1 + 50 * d2 + 100 * d3:
+        tiendien_1 = 50 * d1
+        tiendien_2 = tiendien_no_tax - tiendien_1
+        tiendien_3 = tiendien_2 - 50 * d2
+        KWh = tiendien_3 / d3
+        break
+    elif tiendien_no_tax <= 50 * d1 + 50 * d2 + 100 * d3 + 100 * d4:
+        tiendien_1 = 50 * d1
+        tiendien_2 = tiendien_no_tax - tiendien_1
+        tiendien_3 = tiendien_2 - 50 * d2
+        tiendien_4 = tiendien_3 - 100 * d3
+        KWh = tiendien_4 / d4
+        break
+    elif tiendien_no_tax <= 50 * d1 + 50 * d2 + 100 * d3 + 100 * d4 + 100 * d5:
+        tiendien_1 = 50 * d1
+        tiendien_2 = tiendien_no_tax - tiendien_1
+        tiendien_3 = tiendien_2 - 50 * d2
+        tiendien_4 = tiendien_3 - 100 * d3
+        tiendien_5 = tiendien_4 - 100 * d4
+        KWh = tiendien_5 / d5
+        break
+    else:
+        tiendien_1 = 50 * d1
+        tiendien_2 = 50 * d2
+        tiendien_3 = 100 * d3
+        tiendien_4 = 100 * d4
+        tiendien_5 = 100 * d5
+        tiendien_6 = tiendien_no_tax - tiendien_1 - tiendien_2 - tiendien_3 - tiendien_4 - tiendien_5
+        KWh = tiendien_6 / d6
+        break
+print(f"Số điện tiêu thụ (KWh): {KWh}")
