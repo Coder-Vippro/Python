@@ -6,7 +6,6 @@ if a+b<c or a+c<b or b+c<a:
     print("Ba canh duoc nhap khong tap thanh tam giac")
 else:
     p=float((a+b+c)/2)
-    dt=float(math.sqrt(p*(p-a)*(p-b)*(p-c)))
-    print(f"Dien tich tam giac: {dt}")
-    print(f"Chu vi tam giac: {p}")
-    dt=float(((p-a)**0.5)*((p-b)**0.5)*((p-c)**0.5))
+    dt=float((p*(p-a)*(p-b)*(p-c))**0.5)
+    print("Dien tich tam giac:",dt)
+    print("Chu vi tam giac:",p*2)
